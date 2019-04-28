@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet,Platform,Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Body, View, Left, Right } from 'native-base';
 import validate from "../utility/validation";
 export default class LoginScreen extends Component {
 	state = {
 		controls: {
-		  mobileNumber: {
+		  Varification: {
 			value: "",
 			valid: false,
-			validationRules: {
-			  ismobileNumber: true,
-			  notEmpty: true,
-			  maxLength: 11
+			validationRules: {			  
+			  notEmpty: true,			  
 			},
 			touched: false
 		  }
 		}
 	};
-
-	phoneNumberInputHandler = val => {
+	phoneVerificationInputHandler = val => {
 		this.setState(prevState => {
 		  return {
 			controls: {
@@ -26,17 +23,16 @@ export default class LoginScreen extends Component {
 			  mobileNumber: {
 				...prevState.controls.mobileNumber,
 				value: val,
-				valid: validate(val, prevState.controls.mobileNumber.validationRules),
+				valid: validate(val, prevState.controls.Varification.validationRules),
 				touched: true
 			  }
 			}
 		  };
 		});
 	  };
-
 	onPressLogin() {
-		this.props.navigation.navigate('Verification')
-	}
+		this.props.navigation.navigate('Drawer')
+	}	
 
 	render() {
 		const {loginContainer, signInButton, input, link} = styles
@@ -44,20 +40,18 @@ export default class LoginScreen extends Component {
 			<Container style={loginContainer}>
 				<Content>
 					<Form>
-					
-						<Input
-						 placeholder='Mobile Number'
-						 style={[styles.input, !this.state.controls.mobileNumber.valid && this.state.controls.mobileNumber.touched ? styles.invalid : null]}
-						 onChangeText={ this.phoneNumberInputHandler }
-						  />
+						<Input 
+						placeholder='Verification Code'
+						onChangeText={ this.phoneVerificationInputHandler }
+						style={[styles.input, !this.state.controls.Varification.valid && this.state.controls.Varification.touched ? styles.invalid : null]} />
 						
 						<Button 
-						primary 
-						block
+						primary
+						block 
 						style={signInButton}
-						disabled={!this.state.controls.mobileNumber.valid}
+						disabled={!this.state.controls.Varification.valid}
 						onPress={()=>this.onPressLogin()}>
-							<Text> Sign In</Text>
+							<Text> Confirm </Text>
 						</Button>
 					</Form>
 				</Content>
@@ -74,22 +68,25 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		padding: 40
 	},
+
+	input: {
+		backgroundColor: '#eee',
+		marginBottom: 10,
+		borderWidth: 1,
+		borderColor: "#eee",
+		padding: 5,
+		borderRadius: 8,
+		},
+	invalid: {
+			backgroundColor: '#f9c0c0',
+			borderColor: "red"
+		},
+
 	link: {
 		fontSize: 13
 	},
+
 	signInButton: {
 		marginTop: 20
-	},
-	input: {
-	backgroundColor: '#eee',
-	marginBottom: 10,
-    borderWidth: 1,
-    borderColor: "#eee",
-    padding: 5,
-	borderRadius: 8,
-	},
-	invalid: {
-		backgroundColor: '#f9c0c0',
-		borderColor: "red"
 	}
 });

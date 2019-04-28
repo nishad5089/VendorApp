@@ -6,6 +6,7 @@ import ItemSearchScreen from '../screens/ItemSearchScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import Verification from '../screens/Verification';
 
 export const App = createStackNavigator(
     {
@@ -16,7 +17,9 @@ export const App = createStackNavigator(
         Login: {
             screen: LoginScreen
         },
-
+        Verification: {
+            screen: Verification
+        },
         Registration: {
             screen: RegistrationScreen
         },
