@@ -21,7 +21,7 @@ export default class LoginScreen extends Component {
 			controls: {
 			  ...prevState.controls,
 			  mobileNumber: {
-				...prevState.controls.mobileNumber,
+				...prevState.controls.Varification,
 				value: val,
 				valid: validate(val, prevState.controls.Varification.validationRules),
 				touched: true
